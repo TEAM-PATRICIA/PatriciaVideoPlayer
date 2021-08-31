@@ -1,6 +1,6 @@
 import os
 
-API_ID = int(os.getenv("API_ID", "6"))
-API_HASH = os.getenv("API_HASH", "eb06d4abfb49dc3eeb1aeb98ae0f581e")
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-SESSION_NAME = os.getenv("SESSION_NAME")
+API_ID = int(os.getenv("API_ID", "3546656"))
+API_HASH = os.getenv("API_HASH", "48b79c54af688f05c350161bddea414c")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "1883531251:AAGV5H77ClYklzXAMB9AOrIb6k-2WQwxpEA")
+SESSION_NAME = os.getenv("SESSION_NAME", " BQBCfPDsR9QhxsThhFNAwUQajwS-QFt8mV3WUSi13qET-DjKtA_LFevIMzHJjqIoFH32HTb9O5U_eUg4P6w1PrTlY3_a8HCECxohywz3qYBbx2_G7LjCBVGdnj1o7p7EsD6jJY11MWy9FP3bEaCj-N84Yt8caW6oNFmSJq7WhtkYD75apYSQe57jaMrwB7G4GO0BQKSbbZEkG00_YFcNXUfElxZ1MAq4l-QK0kxbsOwLcSeLfD_Jk2fMifob0M7ev3vBoFctBD_Fj7XFD6rc_E9Lbuo7TeCOOjkG-3x2LBQ9RgyvaOYGi4-GCyA_lJ_V5muko1ppgxYpgciv-9aCEpUTa2D2nwA")
