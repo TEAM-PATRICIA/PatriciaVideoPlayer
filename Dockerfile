@@ -4,10 +4,10 @@ RUN apt update && apt upgrade -y
 RUN apt install python3-pip -y
 RUN apt install ffmpeg -y
 
-COPY . /innexia
-WORKDIR /innexia
+COPY . /patricia
+WORKDIR /patricia
 
 RUN pip3 install --upgrade pip
 RUN pip3 install -U -r requirements.txt
 
-CMD python3 -m player
+CMD python3 -m main.py
