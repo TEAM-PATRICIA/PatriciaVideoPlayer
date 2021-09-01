@@ -6,7 +6,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from youtube_dl import YoutubeDL
 from opencc import OpenCC
-from config import API_ID, API_HASH, SESSION_NAME
+from config import API_ID, API_HASH, SESSION_NAME,UPDATES_CHANNEL,VIDEO_THUMBNAIL,AUDIO_THUMBNAIL
 import wget
 
 YTDL_REGEX = (r"^((?:https?:)?\/\/)"
