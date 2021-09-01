@@ -6,15 +6,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from youtube_dl import YoutubeDL
 from opencc import OpenCC
-from config import Config
+from config import API_ID, API_HASH, SESSION_NAME
 import wget
-
-Jebot = Client(
-   "AnyDL Bot",
-   api_id=Config.APP_ID,
-   api_hash=Config.API_HASH,
-   bot_token=Config.TG_BOT_TOKEN,
-)
 
 YTDL_REGEX = (r"^((?:https?:)?\/\/)"
               r"?((?:www|m)\.)"
