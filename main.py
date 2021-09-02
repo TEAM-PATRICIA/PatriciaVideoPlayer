@@ -10,12 +10,7 @@ bot = Client(
     plugins=dict(root="player"),
 )
 
-print(
-    """
-Bot Started!
-Join @TGBOTSXD & @TGBOTZXD
-"""
-)
+
 bot.start()
 app.start()
 idle()
