@@ -10,7 +10,6 @@ bot = Client(
     plugins=dict(root="player"),
 )
 
-
 bot.start()
 app.start()
 idle()
