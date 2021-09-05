@@ -32,7 +32,7 @@ async def cbstart(_, query: CallbackQuery):
                                 reply_markup=InlineKeyboardMarkup(
                        [[
                           InlineKeyboardButton(
-                             "ᴄᴏᴍᴍᴀɴᴅꜱ ᴀɴᴅ ʜᴇʟᴘ", callback_data="help")
+                             "ᴄᴏᴍᴍᴀɴᴅꜱ ᴀɴᴅ ʜᴇʟᴘ", callback_data="help"), 
                           InlineKeyboardButton(
                              "👀 ᴄᴍᴅꜱ ʟɪꜱᴛ", callback_data="cblist")
                        ],[
