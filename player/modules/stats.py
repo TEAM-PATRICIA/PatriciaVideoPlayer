@@ -6,7 +6,7 @@ import time
 import uuid
 from datetime import datetime
 from os import environ, execle, path, remove
-from helpers.decorators import humanbytes
+from player.helpers.decorators import humanbytes
 
 import psutil
 from pyrogram import  Client, filters, __version__
