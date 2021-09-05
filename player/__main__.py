@@ -1,5 +1,5 @@
 from pyrogram import Client, idle
-from config import API_ID, API_HASH, BOT_TOKEN
+from player.config import API_ID, API_HASH, BOT_TOKEN
 from player.modules.videoplayer import app
 
 
