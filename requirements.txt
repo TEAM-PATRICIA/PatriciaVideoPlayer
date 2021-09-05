@@ -3,7 +3,7 @@ ffmpeg-python
 future
 git+https://github.com/pyrogram/pyrogram@master
 googletrans==4.0.0-rc1
-pytgcalls==3.0.0.dev13
+pytgcalls==3.0.0.dev12
 gTTS
 wget
 tswift
