@@ -14,21 +14,30 @@ VIDEO_CALL = {}
 async def stream(client, m: Message):
     replied = m.reply_to_message
     if not replied:
-        await m.reply("`Reply to some Video!`")
+        if len(m.command) < 2:
+            await m.reply("`Reply to some Video or Give Some Live Stream Url!`")
+        else:
+            livelink = m.text.split(None, 1)[1]
+            msg = await m.reply("`Starting Live Stream...`")
+            chat_id = m.chat.id
+            await asyncio.sleep(1)
+            try:
+                group_call = group_call_factory.get_group_call()
+                await group_call.join(chat_id)
+                await group_call.start_video(livelink)
+                VIDEO_CALL[chat_id] = group_call
+                await msg.edit(f"**▶️ Started [Live Streaming](livelink) !**")
+            except Exception as e:
+                await msg.edit(f"**Error** -- `{e}`")
     elif replied.video or replied.document:
         msg = await m.reply("`Downloading...`")
+        video = await client.download_media(m.reply_to_message)
         chat_id = m.chat.id
+        await asyncio.sleep(2)
         try:
-            video = await client.download_media(m.reply_to_message)
-            await msg.edit("`Converting...`")
-            os.system(f'ffmpeg -i "{video}" -vn -f s16le -ac 2 -ar 48000 -acodec pcm_s16le -filter:a "atempo=0.81" vid-{chat_id}.raw -y')
-        except Exception as e:
-            await msg.edit(f"**🚫 Error** - `{e}`")
-        await asyncio.sleep(5)
-        try:
-            group_call = group_call_factory.get_file_group_call(f'vid-{chat_id}.raw')
-            await group_call.start(chat_id)
-            await group_call.set_video_capture(video)
+            group_call = group_call_factory.get_group_call()
+            await group_call.join(chat_id)
+            await group_call.start_video(video)
             VIDEO_CALL[chat_id] = group_call
             await msg.edit("**▶️ Started Streaming!**")
         except Exception as e:
