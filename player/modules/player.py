@@ -1,9 +1,9 @@
 import re
 import time
-from vcbot.config import Var
+from player.config import Var
 from pyrogram import filters, Client
 from datetime import datetime
-from vcbot.player import Player
+from player.player import Player
 from pyrogram.types import Message
 from youtube_search import YoutubeSearch
 from player import UB, to_delete, StartTime, group_calls
