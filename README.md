@@ -4,7 +4,7 @@
 <a href="t.me/TGbotsXD"><img src="https://img.shields.io/badge/Join-Telegram%20Group-blue.svg?logo=telegram"></a>
 ![logo](https://telegra.ph/file/cbb7309967e8648c21032.jpg )
 # How To Host 
-[![Deploy+on+Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/TEAM-PATRICIA/PatriciaVideoPlayer&envs=API_ID,API_HASH,BOT_TOKEN,SESSION_NAME,COMMAND_PREFIXES,BOT_USERNAME,ASSISTANT_NAME,SUDO_USERS,DURATION_LIMIT )
+[![Deploy+on+Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/TEAM-PATRICIA/PatriciaVideoPlayer&envs=API_ID,API_HASH,BOT_TOKEN,SESSION,SUDO )
 
 # [OWNER](telegram.me/piroXpower) 
 # Credit 🔥 
@@ -17,4 +17,6 @@
 - [MarshalX](https://github.com/MarshalX) for [pytgcalls](https://github.com/MarshalX/tgcalls)
 - [Dan](https://github.com/delivrance) for [Pyrogram](https://github.com/pyrogram/pyrogram)
 
- 
+lick the button to deploy
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TEAM-PATRICIA/PatriciaVideoPlayer) 
