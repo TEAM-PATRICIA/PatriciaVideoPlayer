@@ -12,12 +12,17 @@ async def cbguide(_, query: CallbackQuery):
 2.) then promote me as admin and give all permissions except anonymous admin.
 3.) add @{bn} to your group.
 4.) turn on the voice chat first before start to stream video.
-5.) type /vstream (reply to video) to start streaming.
-6.) type /vstop to end the video streaming.
+5.) type /stream (reply to video) to start video streaming.
+6.) type /stop to end the video streaming.
+7.) type /play<song name> to start audio play. 
+8.) type /end to end audio play
+9.) type /skip to skip audio play to next song. 
+10.) type /pause to stop current audio play. 
+11.) type /resume to start current audio play again. 
 
 📝 **note: stream & stop command can only be executed by group admin only!**
 
-⚡ __ᴘᴀʀᴛ ᴏꜰ ᴢᴀɪᴅ  ᴛᴇᴀᴍ__""",
+⚡ __ᴘᴀʀᴛ ᴏꜰ `❛╚»🇹G⃠«╝🇳/🇽𝖣 ‌┈──̇─̇─̇─̇─••` ᴛᴇᴀᴍ__""",
     reply_markup=InlineKeyboardMarkup(
       [[
         InlineKeyboardButton(
@@ -52,7 +57,7 @@ async def cbinfo(_, query: CallbackQuery):
   await query.edit_message_text(
     f"""🌐 **bot information !**
 
-😇 __This bot was created to stream video in telegram group video chats using several methods from Zweb Server.__
+😇 __This bot was created to stream video in telegram group video chats using several methods from web Server.__
 
 💡 __Powered by PyTgcalls the Async client API for the Telegram Group Calls, and Pyrogram the telegram MTProto API Client Library and Framework in Pure Python for Users and Bots.__
 
@@ -72,8 +77,13 @@ async def cblist(_, query: CallbackQuery):
   await query.edit_message_text(
     f"""😏 ᴀʟʟ ᴄᴍᴅꜱ ʟɪꜱᴛ:
 
-» /vstream (reply to video or file) - to stream video or url of YouTube 
-» /vstop - end the video streaming
+» /stream (reply to video or file) - to stream video or url of YouTube 
+» /stop - end the video streaming
+» /play (reply to audio file Or songname) - to stream audio play. 
+» /pause - stop song play on current line
+» /resume - start song play with current line
+» /end stop music player
+» /skip skip the current song to next selected
 » /song (song name) - download song from YT
 » /vsong (video name) - download video from YT
 » /lyric (song name) - lyric scrapper
