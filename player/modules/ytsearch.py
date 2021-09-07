@@ -1,37 +1,78 @@
-import logging
-
-from pyrogram import Client as app
+import re
+import os
+import signal
+import asyncio
+import traceback
+from asyncio import sleep
+from pytgcalls.exceptions import GroupCallNotFound
+from player.config import Var
+from pyrogram import filters, Client
+from player.player import Player
 from pyrogram.types import Message
-from youtube_search import YoutubeSearch
-
-logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+from player import UB, to_delete, ff_sempai, group_calls
+from player.helpers.utils import convert_to_stream, raw_converter, is_ytlive
+from pytgcalls import StreamType
+from pytgcalls.types.input_stream import (
+    VideoParameters,
+    AudioParameters,
+    InputAudioStream,
+    InputVideoStream
 )
-logger = logging.getLogger(__name__)
-
-import pyrogram
-
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
-@app.on_message(pyrogram.filters.command(["search"]))
-async def ytsearch(_, message: Message):
+
+@UB.on_message(filters.user(Var.SUDO) & filters.command('stream', '.'))
+async def stream_msg_handler(_, m: Message):
+    status = "Processing.."
+    msg = await m.reply(status)
+    stream_url = "https://feed.play.mv/live/10005200/7EsSDh7aX6/master.m3u8"
     try:
-        if len(message.command) < 2:
-            await message.reply_text("/search needs an argument!")
-            return
-        query = message.text.split(None, 1)[1]
-        m = await message.reply_text("Searching....")
-        results = YoutubeSearch(query, max_results=4).to_dict()
-        i = 0
-        text = ""
-        while i < 4:
-            text += f"Title - {results[i]['title']}\n"
-            text += f"Duration - {results[i]['duration']}\n"
-            text += f"Views - {results[i]['views']}\n"
-            text += f"Channel - {results[i]['channel']}\n"
-            text += f"https://youtube.com{results[i]['url_suffix']}\n\n"
-            i += 1
-        await m.edit(text, disable_web_page_preview=True)
-    except Exception as e:
-        await message.reply_text(str(e))
+        stream_url = m.text.split(' ', 1)[1]
+        link = re.search(r'((https?:\/\/)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)\/(watch\?v=|embed\/|v\/|.+\?v=)?([^&=%\?]{11}))', stream_url)
+        if link:
+            link = link.group(1)
+            stream_url = await convert_to_stream(link)
+    except IndexError:
+        ...
+    vid = f"vid{m.chat.id}.raw"
+    audio = f"audio{m.chat.id}.raw"
+    player = Player(m.chat.id)
+    player.add_to_trash(vid)
+    player.add_to_trash(audio)
+    proc = raw_converter(stream_url, vid, audio)
+    ff_sempai[m.chat.id] = proc
+    while not os.path.exists(vid) and not os.path.exists(audio):
+        await asyncio.sleep(0.125)
+    await group_calls.join_group_call(
+        m.chat.id,
+        InputAudioStream(
+            audio,
+            AudioParameters(
+                bitrate=45000,
+            ),
+        ),
+        InputVideoStream(
+            vid,
+            VideoParameters(
+                width=854,
+                height=480,
+                frame_rate=20, 
+            ),
+        ),
+        stream_type=StreamType().pulse_stream,
+    )
+
+
+
+@UB.on_message(filters.user(Var.SUDO) & filters.command('stop', '.'))
+async def stop_stream_msg_handler(_, m: Message):
+    player = Player(m.chat.id)
+    try:
+        instance = group_calls.get_active_call(m.chat.id)
+    except GroupCallNotFound:
+        instance = None
+    print(instance)
+    if instance:
+        await player.leave_vc()
+    else:
+        await m.reply("No streams going on vc")
