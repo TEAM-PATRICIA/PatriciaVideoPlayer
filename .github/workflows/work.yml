@@ -9,7 +9,7 @@ on:
 env:
   API_ID: "${{ secrets.API_ID }}"
   API_HASH: "${{ secrets.API_HASH }}"
-  SESSION: "${{ secrets.SESSION }}"
+  SESSION_NAME: "${{ secrets.SESSION_NAME }}"
   
 
 jobs:
