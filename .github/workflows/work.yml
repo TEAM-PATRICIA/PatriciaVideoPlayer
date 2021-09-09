@@ -10,8 +10,7 @@ env:
   API_ID: "${{ secrets.API_ID }}"
   API_HASH: "${{ secrets.API_HASH }}"
   SESSION: "${{ secrets.SESSION }}"
-  BOT_TOKEN: "${{ secrets.BOT_TOKEN }}"
-  SUDO: "${{ secrets.SUDO }}"
+  
 
 jobs:
   build:
@@ -40,12 +39,10 @@ jobs:
           #  echo "API_ID=${{ secrets.API_ID }} | tee .env
           #  echo "API_HASH=${{ secrets.API_HASH }} | tee -a .env
           #  echo "SESSION=${{ secrets.SESSION }} | tee -a .env
-          #  echo "SUDO=${{ secrets.SUDO }} | tee -a .env
-          #  echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }} | tee -a .env || echo "Proceeding with no bot"
           #  cat .env
        - name: Running
          timeout-minutes: 500
          continue-on-error: true
          run: |
-           python3 -m player
+           python3 player.py
            echo "Magic Happened!!!!"
